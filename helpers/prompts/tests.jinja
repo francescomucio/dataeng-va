@@ -1,0 +1,38 @@
+[no prose]
+[Output only yaml]
+I want you to act as a dbt expert. Provide a set of generic tests for the following dbt model called `{{ dbt_model_name }}`.
+
+{% if model_info %}
+As additional context regarding this model (rephrase it in the description if pertinent):
+{{ model_info }}
+{% endif %}
+
+Here is a sample schema:
+
+```yaml
+version: 2
+
+    models:
+    - name: events
+
+        columns:
+        - name: event_id
+            tests:
+            - unique
+            - not_null
+
+        - name: user-id
+            tests:
+            - not_null
+``` 
+
+Additional instructions:
+- Generate tests for the given model 
+- Do not generate sources 
+- Do not include the query
+- Do not include description columns
+- Indent the columns under the model
+- Indent tests under the related columns
+
+Here is the model:
+    {{ dbt_model }}

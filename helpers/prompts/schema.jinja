@@ -1,0 +1,41 @@
+[no prose]
+[Output only yaml]
+I want you to act as a dbt expert. Provide a <filename>.yaml file for the following dbt model called `{{ dbt_model_name }}`.
+
+{% if model_info %}
+As additional context regarding this model (rephrase it in the description if pertinent):
+{{ model_info }}
+{% endif %}
+
+Here is a sample schema:
+
+```yaml
+version: 2
+
+    models:
+    - name: events
+        description: This table contains clickstream events from the marketing website
+
+        columns:
+        - name: event_id
+            description: This is a unique identifier for the event
+            tests:
+            - unique
+            - not_null
+
+        - name: user-id
+            quote: true
+            description: The user who performed the event
+            tests:
+            - not_null
+``` 
+
+Additional instructions:
+- Generate the documentation only for the model `{{ dbt_model_name }}`
+- Do not generate sources 
+- Do not include the query
+{{ tests }}
+- Include a description for the model and the columns
+
+Here is the model:
+    {{ dbt_model }}

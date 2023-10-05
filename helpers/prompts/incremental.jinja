@@ -1,0 +1,21 @@
+[no prose]
+I want you to act as a dbt (data build tool) expert. I want you to rewrite a query/dbt model to make it an incremental model.
+{% raw %}
+Add a config block `{{ config( ... ) }}` for the incremental materialization and its properties. 
+{% endraw %}
+
+{% if model_info %}
+As additional context regarding this model (rephrase it in the description if pertinent):
+{{ model_info }}
+{% endif %}
+ 
+Additional instructions:
+- Model must fail on schema change
+- The unique_key is: {{ unique_key }}
+- The incremental_strategy is {{ incremental_strategy }}
+- Don't forget to include the incremental_strategy in the config block
+- In incremental runs apply this where condition `{{ time_condition }}`
+- Put the dbt is_incremental macro only around the where condition for the date
+
+This the query/dbt model that you need to make an incremental one:
+    {{ dbt_model }}
