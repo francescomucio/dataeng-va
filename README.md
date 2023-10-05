@@ -11,4 +11,10 @@ Ideally you should just select a page, the help you need and use the form. Some 
 ## Caveat Emptor
 As you probably can imagine, these utilities are based on ChatGPT which sometimes can say more than expected. Please be careful and review the answers you receive. 
 
+## Contributing
 
+Do you have a feedback? 
+Do you an idea for an utility/prompt? 
+Do you want to contribute?
+
+For all this, you can use the [github repository](https://github.com/francescomucio/dataeng-va) or a this [suggestion form](https://forms.gle/PPGE6RaaFn6rT9SX9).
