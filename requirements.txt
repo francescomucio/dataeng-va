@@ -5,3 +5,4 @@ pydeck
 streamlit
 openai
 jinja2
+black

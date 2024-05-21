@@ -14,13 +14,13 @@ class OpenAIdbt(OpenAI):
         else:
             tests = "- Do not generate tests"
 
-        data = self.__get_passed_arguments(locals())
+        data = self._get_passed_arguments(locals())
 
-        template = self.env.get_template("schema.jinja")
+        template = self.env.get_template("dbt_schema.jinja")
         prompt = template.render(data)
 
         print(prompt)
-        return self.__call_openapi(prompt)
+        return self._call_openapi(prompt)
 
     def generate_tests(
         self,
@@ -28,13 +28,13 @@ class OpenAIdbt(OpenAI):
         dbt_model: str,
         model_info: str = "",
     ):
-        data = self.__get_passed_arguments(locals())
+        data = self._get_passed_arguments(locals())
 
-        template = self.env.get_template("tests.jinja")
+        template = self.env.get_template("dbt_tests.jinja")
         prompt = template.render(data)
 
         print(prompt)
-        return self.__call_openapi(prompt)
+        return self._call_openapi(prompt)
 
     def generate_incremental(
         self,
@@ -45,10 +45,10 @@ class OpenAIdbt(OpenAI):
         incremental_strategy: str = "merge",
         time_condition: str = "created_dt > (select max(created_dt) from {{ this }})",
     ):
-        data = self.__get_passed_arguments(locals())
+        data = self._get_passed_arguments(locals())
 
-        template = self.env.get_template("incremental.jinja")
+        template = self.env.get_template("dbt_incremental.jinja")
         prompt = template.render(data)
 
         print(prompt)
-        return self.__call_openapi(prompt)
+        return self._call_openapi(prompt)

@@ -14,11 +14,11 @@ class OpenAI:
             loader=jinja2.FileSystemLoader(self.template_folder)
         )
 
-    def __call_openapi(self, prompt: str):
-        openai.api_key = self.openai_api_key
+    def _call_openapi(self, prompt: str):
+        client = openai.OpenAI(api_key=self.openai_api_key)
         model = "gpt-3.5-turbo"
 
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model=model,
             messages=[
                 {
@@ -28,10 +28,10 @@ class OpenAI:
             ],
         )
 
-        msg = response.choices[0].message["content"]
+        msg = response.choices[0].message.content
         # st.session_state.messages.append(msg)
         return msg
 
-    def __get_passed_arguments(self, arg_dict):
+    def _get_passed_arguments(self, arg_dict):
         del arg_dict["self"]
         return arg_dict
