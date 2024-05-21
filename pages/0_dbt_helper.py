@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 
 from streamlit.logger import get_logger
 from helpers.dbt_api import OpenAIdbt
